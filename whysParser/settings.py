@@ -39,6 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'jsonToElasticParser.apps.JsontoelasticparserConfig',
+
+#     libs
+    'rest_framework',
+    'django_elasticsearch_dsl',
+    'django_elasticsearch_dsl_drf',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +90,13 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     }
+}
+
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': f'elasticsearch://{config("ES_USERNAME")}:{config("ELASTIC_PASSWORD")}@127.0.0.1:{config("ES_PORT")}'
+    },
 }
 
 
