@@ -217,6 +217,22 @@ services:
       timeout: 10s
       retries: 120
 
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-whys}
+      PGDATA: /data/postgres
+    volumes:
+      - postgres:/data/postgres
+    ports:
+      - "5432:5432"
+#    networks:
+#      - postgres
+    restart: unless-stopped
+
 volumes:
   certs:
     driver: local
@@ -227,5 +243,7 @@ volumes:
   esdata03:
     driver: local
   kibanadata:
+    driver: local
+  postgres:
     driver: local
 
