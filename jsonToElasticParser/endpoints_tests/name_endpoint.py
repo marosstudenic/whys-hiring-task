@@ -18,7 +18,6 @@ class ModelNameTestCase(APITestCase):
 
     def test_filter_models_api(self):
         response = self.client.get('/detail/TestModels?test=test2')
-        print(response.data)
         self.assertTrue(len(response.data) == 1)
         self.assertTrue(response.data[0]['name'] == 'TestModels')
         self.assertTrue(json.dumps(response.data[0]['content']) == '{"test": "test2"}')
